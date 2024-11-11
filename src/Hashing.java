@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Arrays;
 public class Hashing {
@@ -61,23 +62,28 @@ public class Hashing {
 //            // fetching:
 //            System.out.println(hash[number]);
 //        }
-        int arr[] = {2,3,2,3,5};
-        int N = 5;
-        int P = 5;
-        int hash[] = new int[P+1];
-        for(int i=0;i<P;i++){
-            hash[arr[i]]+=1;
+        int arr[] = {8,9};
+        int N = 2;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int key = arr[i];
+            int freq =  0;
+            if(map.containsKey(key)){
+                freq = map.get(key);
+            }
+            freq++;
+            map.put(key,freq);
         }
-        int arr1[] = new int [N];
-        int x=1;
-        int a =0;
-        while(x<=N){
-            arr1[a] = hash[x];
-            x++;
-            a++;
+        while(N >=1){
+            int number;
+            number = N;
+            if(map.containsKey(number)){
+                arr[N-1] = map.get(number);
+            }else{
+                arr[N-1]=0;
+            }
+            N--;
         }
-
-
-        System.out.println(Arrays.toString(arr1));
+        System.out.println(Arrays.toString(arr));
     }
 }
